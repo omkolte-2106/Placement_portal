@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h4>Create Placement Drive</h4>
+
+<div class="card p-4 shadow-sm">
+    <form method="POST">
+
+        <div class="mb-3">
+            <label>Job Role</label>
+            <input type="text" name="job_role" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Package</label>
+            <input type="text" name="package" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label>Location</label>
+            <input type="text" name="location" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label>Eligibility Criteria</label>
+            <input type="text" name="eligibility" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label>Drive Type</label>
+            <select name="drive_type" class="form-control">
+                <option>Full-time</option>
+                <option>Internship</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label>Application Deadline</label>
+            <input type="date" name="deadline" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label>Description</label>
+            <textarea name="description" class="form-control"></textarea>
+        </div>
+
+        <button class="btn btn-success">Submit Drive</button>
+
+    </form>
+</div>
+
+{% endblock %}

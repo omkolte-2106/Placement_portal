@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h3 class="mb-4">Admin Dashboard</h3>
+
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="card text-center p-3 shadow-sm">
+            <h5>Total Students</h5>
+            <h3>{{ students }}</h3>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center p-3 shadow-sm">
+            <h5>Total Companies</h5>
+            <h3>{{ companies }}</h3>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center p-3 shadow-sm">
+            <h5>Total Drives</h5>
+            <h3>{{ drives }}</h3>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center p-3 shadow-sm">
+            <h5>Total Applications</h5>
+            <h3>{{ applications }}</h3>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

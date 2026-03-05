@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h4>Available Placement Drives</h4>
+
+<table class="table table-bordered mt-3">
+    <thead class="table-dark">
+        <tr>
+            <th>Company</th>
+            <th>Role</th>
+            <th>Package</th>
+            <th>Deadline</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for drive in drives %}
+        <tr>
+            <td>{{ drive.company_id }}</td>
+            <td>{{ drive.job_role }}</td>
+            <td>{{ drive.package }}</td>
+            <td>{{ drive.deadline }}</td>
+            <td>
+                <a href="/apply/{{ drive.id }}" class="btn btn-sm btn-primary">
+                    Apply
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

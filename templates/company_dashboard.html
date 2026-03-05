@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h3 class="mb-3">Company Dashboard</h3>
+
+<div class="card p-3 mb-4 shadow-sm">
+    <h5>{{ company.company_name }}</h5>
+    <p>Email: {{ company.email }}</p>
+    <p>Status: 
+        <span class="badge bg-info">{{ company.approval_status }}</span>
+    </p>
+
+    <a href="/create_drive/{{ company.id }}" class="btn btn-success btn-sm">
+        Create New Drive
+    </a>
+</div>
+
+<h5>Your Placement Drives</h5>
+
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Role</th>
+            <th>Package</th>
+            <th>Status</th>
+            <th>Approval</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for drive in drives %}
+        <tr>
+            <td>{{ drive.job_role }}</td>
+            <td>{{ drive.package }}</td>
+            <td>{{ drive.drive_status }}</td>
+            <td>{{ drive.approval_status }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
