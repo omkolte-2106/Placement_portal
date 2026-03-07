@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registered Students</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        .back { display: inline-block; margin-bottom: 15px; text-decoration: none; color: #007bff; }
+    </style>
+</head>
+<body>
+
+    <h2>Registered Students</h2>
+    <a href="{{ url_for('dashboard') }}" class="back">← Back to Dashboard</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>CGPA</th>
+                <th>Contact</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ student.full_name }}</td>
+                <td>{{ student.email }}</td>
+                <td>{{ student.department }}</td>
+                <td>{{ student.cgpa }}</td>
+                <td>{{ student.contact }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>

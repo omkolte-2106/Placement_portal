@@ -1,39 +1,48 @@
-{% extends "layout.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        h2 { border-bottom: 2px solid #333; padding-bottom: 10px; }
+        .dashboard-grid { display: flex; gap: 20px; margin-top: 20px; flex-wrap: wrap; }
+        .card { border: 1px solid #ddd; padding: 20px; border-radius: 8px; width: 200px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .card h3 { margin-top: 0; color: #555; }
+        .count { font-size: 32px; font-weight: bold; color: #007bff; margin: 10px 0; }
+        .btn { display: inline-block; padding: 8px 16px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-top: 10px; }
+        .btn:hover { background-color: #0056b3; }
+        .logout { float: right; color: red; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
 
-{% block content %}
+    <a href="{{ url_for('logout') }}" class="logout">Logout</a>
+    <h2>Admin Dashboard</h2>
 
-<h3 class="mb-4">Admin Dashboard</h3>
+    <div class="dashboard-grid">
+        <!-- Companies Card -->
+        <div class="card">
+            <h3>Companies</h3>
+            <div class="count">{{ companies }}</div>
+            <a href="{{ url_for('admin_companies') }}" class="btn">Manage Companies</a>
+        </div>
 
-<div class="row">
+        <!-- Drives Card -->
+        <div class="card">
+            <h3>Placement Drives</h3>
+            <div class="count">{{ drives }}</div>
+            <a href="{{ url_for('admin_drives') }}" class="btn">Manage Drives</a>
+        </div>
 
-    <div class="col-md-3">
-        <div class="card text-center p-3 shadow-sm">
-            <h5>Total Students</h5>
-            <h3>{{ students }}</h3>
+        <!-- Students Card -->
+        <div class="card">
+            <h3>Students</h3>
+            <div class="count">{{ students }}</div>
+            <a href="{{ url_for('admin_students') }}" class="btn">View Students</a>
         </div>
     </div>
 
-    <div class="col-md-3">
-        <div class="card text-center p-3 shadow-sm">
-            <h5>Total Companies</h5>
-            <h3>{{ companies }}</h3>
-        </div>
-    </div>
-
-    <div class="col-md-3">
-        <div class="card text-center p-3 shadow-sm">
-            <h5>Total Drives</h5>
-            <h3>{{ drives }}</h3>
-        </div>
-    </div>
-
-    <div class="col-md-3">
-        <div class="card text-center p-3 shadow-sm">
-            <h5>Total Applications</h5>
-            <h3>{{ applications }}</h3>
-        </div>
-    </div>
-
-</div>
-
-{% endblock %}
+</body>
+</html>

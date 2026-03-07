@@ -2,41 +2,76 @@
 
 {% block content %}
 
-<h3 class="mb-3">Company Dashboard</h3>
+<h3 class="mb-4">Company Dashboard</h3>
 
-<div class="card p-3 mb-4 shadow-sm">
-    <h5>{{ company.company_name }}</h5>
-    <p>Email: {{ company.email }}</p>
-    <p>Status: 
-        <span class="badge bg-info">{{ company.approval_status }}</span>
-    </p>
-
-    <a href="/create_drive/{{ company.id }}" class="btn btn-success btn-sm">
+<div class="mb-3">
+    <a href="/create_drive/{{ company.id }}" class="btn btn-primary">
         Create New Drive
     </a>
 </div>
 
-<h5>Your Placement Drives</h5>
+<table class="table table-bordered table-striped">
 
-<table class="table table-bordered">
     <thead class="table-dark">
         <tr>
-            <th>Role</th>
+            <th>Job Role</th>
             <th>Package</th>
-            <th>Status</th>
-            <th>Approval</th>
+            <th>Location</th>
+            <th>Deadline</th>
+            <th>Approval Status</th>
+            <th>Drive Status</th>
+            <th>Applications</th>
         </tr>
     </thead>
+
     <tbody>
+
         {% for drive in drives %}
+
         <tr>
+
             <td>{{ drive.job_role }}</td>
+
             <td>{{ drive.package }}</td>
+
+            <td>{{ drive.location }}</td>
+
+            <td>{{ drive.deadline }}</td>
+
+            <td>
+
+                {% if drive.approval_status == "Approved" %}
+                    <span class="text-success">Approved</span>
+
+                {% elif drive.approval_status == "Rejected" %}
+                    <span class="text-danger">Rejected</span>
+
+                {% else %}
+                    <span class="text-warning">Pending</span>
+
+                {% endif %}
+
+            </td>
+
             <td>{{ drive.drive_status }}</td>
-            <td>{{ drive.approval_status }}</td>
+
+            <td>
+
+                <a href="/company_applications/{{ drive.id }}"
+                   class="btn btn-sm btn-info">
+
+                    View Applications
+
+                </a>
+
+            </td>
+
         </tr>
+
         {% endfor %}
+
     </tbody>
+
 </table>
 
 {% endblock %}

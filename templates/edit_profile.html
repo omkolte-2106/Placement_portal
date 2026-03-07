@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h3>Edit Profile</h3>
+
+<form method="POST">
+
+<div class="mb-3">
+<label>Name</label>
+<input type="text" name="name" value="{{ student.full_name }}" class="form-control">
+</div>
+
+<div class="mb-3">
+<label>Department</label>
+<input type="text" name="branch" value="{{ student.department }}" class="form-control">
+</div>
+
+<div class="mb-3">
+<label>CGPA</label>
+<input type="text" name="cgpa" value="{{ student.cgpa }}" class="form-control">
+</div>
+
+<button class="btn btn-primary">
+Update Profile
+</button>
+
+</form>
+
+{% endblock %}

@@ -5,30 +5,53 @@
 <h4>Available Placement Drives</h4>
 
 <table class="table table-bordered mt-3">
-    <thead class="table-dark">
-        <tr>
-            <th>Company</th>
-            <th>Role</th>
-            <th>Package</th>
-            <th>Deadline</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for drive in drives %}
-        <tr>
-            <td>{{ drive.company_id }}</td>
-            <td>{{ drive.job_role }}</td>
-            <td>{{ drive.package }}</td>
-            <td>{{ drive.deadline }}</td>
-            <td>
-                <a href="/apply/{{ drive.id }}" class="btn btn-sm btn-primary">
-                    Apply
-                </a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
+
+<thead class="table-dark">
+<tr>
+<th>Company</th>
+<th>Role</th>
+<th>Package</th>
+<th>Deadline</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody>
+
+{% for drive in drives %}
+
+<tr>
+
+<td>{{ drive.company.company_name }}</td>
+
+<td>{{ drive.job_role }}</td>
+
+<td>{{ drive.package }}</td>
+
+<td>{{ drive.deadline }}</td>
+
+<td>
+
+{% if drive.id not in applied_drive_ids %}
+
+<a href="/apply/{{ drive.id }}" class="btn btn-primary btn-sm">
+Apply
+</a>
+
+{% else %}
+
+<span class="text-success">Applied</span>
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
 </table>
 
 {% endblock %}

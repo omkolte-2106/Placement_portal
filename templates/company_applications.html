@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h3>Applications</h3>
+
+<table class="table table-bordered">
+
+<thead class="table-dark">
+<tr>
+<th>Student</th>
+<th>Email</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody>
+
+{% for app in applications %}
+
+<tr>
+
+<td>{{ app.student.full_name }}</td>
+<td>{{ app.student.email }}</td>
+<td>{{ app.status }}</td>
+
+<td>
+
+<a href="/shortlist/{{ app.id }}" 
+class="btn btn-success btn-sm">
+
+Shortlist
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endblock %}

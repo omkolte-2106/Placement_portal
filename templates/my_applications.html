@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h3>My Applications</h3>
+
+<table class="table table-bordered mt-3">
+
+<thead class="table-dark">
+<tr>
+<th>Company</th>
+<th>Role</th>
+<th>Status</th>
+<th>Date Applied</th>
+</tr>
+</thead>
+
+<tbody>
+
+{% for app in applications %}
+
+<tr>
+
+<td>{{ app.drive.company.company_name }}</td>
+<td>{{ app.drive.job_role }}</td>
+<td>{{ app.status }}</td>
+<td>{{ app.date_applied }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endblock %}
