@@ -9,21 +9,19 @@ from config import Config
 app = Flask(__name__)
 
 
-# ---------------- CONFIGURATION ---------------- #
 
 app.config.from_object(Config)
 
 db.init_app(app)
 
 
-# ---------------- LOGIN MANAGER ---------------- #
+# LOGIN MANAGER
 
 login_manager = LoginManager()
 login_manager.login_view = "login"
 login_manager.init_app(app)
 
 
-# ---------------- USER LOADER ---------------- #
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -37,7 +35,7 @@ def load_user(user_id):
     return None
 
 
-# ---------------- DATABASE INIT ---------------- #
+
 
 with app.app_context():
 
@@ -58,14 +56,14 @@ with app.app_context():
         db.session.commit()
 
 
-# ---------------- HOME ---------------- #
+# HOME
 
 @app.route("/")
 def home():
     return redirect(url_for("login"))
 
 
-# ---------------- LOGIN ---------------- #
+# LOGIN 
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -96,7 +94,7 @@ def login():
     return render_template("login.html")
 
 
-# ---------------- LOGOUT ---------------- #
+#  LOGOUT
 
 @app.route("/logout")
 @login_required
@@ -107,7 +105,7 @@ def logout():
     return redirect(url_for("login"))
 
 
-# ---------------- DASHBOARD ---------------- #
+# DASHBOARD
 
 @app.route("/dashboard")
 @login_required
@@ -150,7 +148,7 @@ def dashboard():
     )
 
 
-# ---------------- REGISTER STUDENT ---------------- #
+#  REGISTER STUDENT
 
 @app.route("/register_student", methods=["GET", "POST"])
 def register_student():
@@ -183,7 +181,7 @@ def register_student():
     return render_template("register_student.html")
 
 
-# ---------------- REGISTER COMPANY ---------------- #
+# REGISTER COMPANY 
 
 @app.route("/register_company", methods=["GET", "POST"])
 def register_company():
@@ -209,7 +207,7 @@ def register_company():
     return render_template("register_company.html")
 
 
-# ---------------- ADMIN COMPANIES ---------------- #
+# ADMIN COMPANIES 
 
 @app.route("/admin_companies")
 @login_required
@@ -223,7 +221,7 @@ def admin_companies():
     return render_template("admin_companies.html", companies=companies)
 
 
-# ---------------- APPROVE COMPANY ---------------- #
+# APPROVE COMPANY 
 
 @app.route("/approve_company/<int:id>")
 @login_required
@@ -242,7 +240,7 @@ def approve_company(id):
     return redirect(url_for("admin_companies"))
 
 
-# ---------------- ADMIN DRIVES ---------------- #
+#  ADMIN DRIVES
 
 @app.route("/admin_drives")
 @login_required
@@ -256,7 +254,7 @@ def admin_drives():
     return render_template("admin_drives.html", drives=drives)
 
 
-# ---------------- APPROVE DRIVE ---------------- #
+# APPROVE DRIVE
 
 @app.route("/approve_drive/<int:id>")
 @login_required
@@ -276,7 +274,7 @@ def approve_drive(id):
     return redirect(url_for("admin_drives"))
 
 
-# ---------------- COMPANY DASHBOARD ---------------- #
+#  COMPANY DASHBOARD
 
 @app.route("/company_dashboard/<int:id>")
 @login_required
@@ -295,7 +293,7 @@ def company_dashboard(id):
 
 
 
-# ---------------- CREATE DRIVE ---------------- #
+#  CREATE DRIVE 
 
 @app.route("/create_drive/<int:company_id>", methods=["GET", "POST"])
 @login_required
@@ -328,7 +326,7 @@ def create_drive(company_id):
     return render_template("create_drive.html")
 
 
-# ---------------- APPLY DRIVE ---------------- #
+#  APPLY DRIVE
 
 @app.route("/apply/<int:drive_id>")
 @login_required
@@ -359,7 +357,7 @@ def apply(drive_id):
     return redirect(url_for("dashboard"))
 
 
-# ---------------- STUDENT APPLICATIONS ---------------- #
+#  STUDENT APPLICATIONS 
 
 @app.route("/my_applications")
 @login_required
@@ -372,7 +370,7 @@ def my_applications():
     return render_template("my_applications.html", applications=apps)
 
 
-# ---------------- SHORTLIST ---------------- #
+# SHORTLIST 
 
 @app.route("/shortlist/<int:app_id>")
 @login_required
@@ -395,7 +393,7 @@ def shortlist(app_id):
 
 
 
-# ---------------- COMPANY APPLICATIONS ---------------- #
+#  COMPANY APPLICATIONS 
 
 @app.route("/company_applications/<int:drive_id>")
 @login_required
@@ -413,7 +411,7 @@ def company_applications(drive_id):
         applications=applications
     )
 
-# ---------------- REJECT DRIVE ---------------- #
+# REJECT DRIVE 
 
 @app.route("/reject_drive/<int:id>")
 @login_required
@@ -435,7 +433,7 @@ def reject_drive(id):
     return redirect(url_for("admin_drives"))
 
 
-# ---------------- REJECT COMPANY ---------------- #
+#  REJECT COMPANY 
 
 @app.route("/reject_company/<int:id>")
 @login_required
@@ -457,7 +455,7 @@ def reject_company(id):
     return redirect(url_for("admin_companies"))
 
 
-# ---------------- ADMIN STUDENTS ---------------- #
+# ADMIN STUDENTS 
 
 @app.route("/admin_students")
 @login_required
@@ -474,8 +472,7 @@ def admin_students():
     )
 
 
-# ---------------- RUN SERVER ---------------- #
-
+# RUN SERVER 
 if __name__ == "__main__":
 
     app.run(debug=True)
